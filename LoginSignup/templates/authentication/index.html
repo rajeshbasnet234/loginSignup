@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5af19, #f12711);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #f12711;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3, h4 {
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 0.5rem 0;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            background: #f12711;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #d1100e;
+        }
+
+        .alert {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .alert-dismissible .close {
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #333;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <h1>Explore Rajesh's First Web Project!</h1>
+
+        {% if user.is_authenticated %}
+        <h3>Welcome back, {{fname}}!</h3>
+        <h4>You’re successfully logged in.</h4>
+        <button type="submit" class="btn"><a href="/signout" class="btn">Sign Out</a></button>
+        {% else %}
+        <h3>Hello, Visitor!</h3>
+        <h4>Join us to experience something amazing!</h4>
+        <button type="submit" class="btn"><a href="/signup" class="btn">Sign Up</a></button>
+        <br/>
+        <button type="submit" class="btn"><a href="/signin" class="btn">Sign In</a></button>
+        {% endif %}
+    </div>
+</body>
+</html>

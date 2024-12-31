@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .alert-dismissible .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.75rem 1rem;
+            color: inherit;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-warning {
+            color: #856404;
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        <h3>Create your account!</h3>
+        <form method="post" action="/signup">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Create A Username (use only letters and numbers)" required>
+            </div>
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter Your Email Address" required>
+            </div>
+            <div class="form-group">
+                <label for="pass1">Password</label>
+                <input type="password" id="pass1" name="pass1" placeholder="Create Your Password" required>
+            </div>
+            <div class="form-group">
+                <label for="pass2">Confirm Password</label>
+                <input type="password" id="pass2" name="pass2" placeholder="Confirm Your Password" required>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+    </div>
+</body>
+
+
+</html>
